@@ -24,17 +24,17 @@
                                   <th scope="col">Total seats</th>
                                   <th scope="col">Image</th>
                                   <th scope="col">Boarding Point</th>
-                                  <th colspan="2"><a href=""><button class="btn btn-success" >Add Route</button></a></th>
+                                  <th colspan="2"><a routerLink="/addRoute"><button class="btn btn-success" >Add Route</button></a></th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr *ngFor="let i of data">
                                   <th scope="row">
                                     <div *ngIf="i.isEdit">
-                                      <input type="text" name="busid" class="form-control" [(ngModel)]="i.busId">
+                                      <input type="text" name="busid" class="form-control" [(ngModel)]="i.routeNo">
                                     </div>
                                     <div *ngIf="!i.isEdit">
-                                      {{i.busId}}
+                                      {{i.routeNo}}
                                     </div>
                                   </th>
                                   <td>
@@ -47,10 +47,10 @@
                                   </td>
                                   <td>
                                     <div *ngIf="i.isEdit">
-                                      <input type="text" name="tseats" class="form-control" [(ngModel)]="i.totalSeats"  >
+                                      <input type="text" name="tseats" class="form-control" [(ngModel)]="i.seats"  >
                                     </div>
                                     <div *ngIf="!i.isEdit">
-                                      {{i.totalSeats}}
+                                      {{i.seats}}
                                     </div>
                                   </td>
                                   <td>

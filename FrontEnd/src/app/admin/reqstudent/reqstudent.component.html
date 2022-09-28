@@ -1,0 +1,110 @@
+
+<app-navbar></app-navbar>
+<div class="main">
+  <div class="container">
+    <div class="row ">
+        <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 g-3 ">
+            <div class="row">
+              <div class=" col col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 ">
+                <app-sidebar></app-sidebar>
+                </div>
+              <div class="col col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10 ">
+                <div class="container" >
+                    
+                  <h1 align="center">
+                    <small class="text-muted">Student Requests</small>
+                  </h1>
+                      <hr>
+                      <div class="table-responsive">
+                        
+                        <table class="table">
+                            <thead class="table-secondary">
+                              <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Register Number</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Semester</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Boarding point</th>
+                                <th colspan="2"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let i of data">
+                                <th scope="row">
+                                  <div>
+                                    {{i.name}}
+                                  </div>
+                                </th>
+
+                                <td>
+                                  <div>
+                                    {{i.userName}}
+                                  </div>
+                                </td>
+
+                                <td>
+                                  <div>
+                                    {{i.registerNumber}}
+                                  </div>
+                                </td>
+                                <td>
+                                  <div>
+                                    {{i.address}}
+                                  </div>
+                                </td>
+                                <td>
+                                  <div>
+                                    {{i.department}}
+                                  </div>
+                                </td>
+                                <td>
+                                  <div>
+                                      {{i.semester}}
+                                  </div>
+                                </td>
+                                <td>
+                                  <div>
+                                    {{i.email}}
+                                  </div>
+                                </td>
+                                <td>
+                                  <div >
+                                    {{i.boardingPoint}}
+                                  </div>
+                                
+                               </td>
+                               <td>
+                                <div style="visibility: hidden">
+                                  {{i.password}}
+                                </div>
+                              
+                             </td>
+                               <td>
+                                <div *ngIf="!i.isEdit">
+                                    <table class="g-3">
+                                      <tr>
+                                        <td><button class="btn btn-primary" (click)="Approve(i)">Approve</button></td>
+                                        &nbsp;
+                                        <td><button class="btn btn-danger"  (click)="Reject(i)">Reject</button></td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                               </td>
+                                
+                              </tr>
+                            </tbody>
+                        </table>
+                      
+                      </div>
+                      <hr>
+                 
+              </div>
+        </div>
+            </div>
+    </div>
+</div>
+</div>
+</div>

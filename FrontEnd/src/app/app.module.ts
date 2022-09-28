@@ -19,7 +19,8 @@ import { ComplaintComponent } from './pages/complaint/complaint.component';
 import { FooterComponent } from './sharepage/footer/footer.component';
 import { RouteadminComponent } from './admin/routeadmin/routeadmin.component';
 import { ComplaintadminComponent } from './admin/complaintadmin/complaintadmin.component';
-import { AddrouteComponent } from './admin/addroute/addroute.component';
+import { ReqstudentComponent } from './admin/reqstudent/reqstudent.component';
+
 
 
 
@@ -39,7 +40,8 @@ import { AddrouteComponent } from './admin/addroute/addroute.component';
     FooterComponent,
     RouteadminComponent,
     ComplaintadminComponent,
-    AddrouteComponent,
+    ReqstudentComponent,
+
   ],
   imports: [
     BrowserModule,

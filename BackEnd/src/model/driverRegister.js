@@ -1,6 +1,5 @@
 const Mongoose = require ("mongoose")
 const schema = Mongoose.Schema;
-Mongoose.connect("mongodb+srv://Immanuel:immanuel@cluster0.rnux5pm.mongodb.net/CollegeBusDB?retryWrites=true&w=majority")
 const driverSchema = new schema({
     name : {type: String,required :true},
     userName : {type: String,required :true},

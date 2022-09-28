@@ -27,9 +27,7 @@
                                 <th scope="col">Semester</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Boarding point</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Status</th>
-                                <th colspan="2"></th>
+                                <th colspan="2"><a routerLink="/request"><button class="btn btn-success" >Requests</button></a></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -98,22 +96,6 @@
                                   </div>
                                   <div *ngIf="!i.isEdit">
                                     {{i.boardingPoint}}
-                                  </div>
-                                </td>
-                                <td>
-                                  <div *ngIf="i.isEdit">
-                                    <input type="text" name="amt" class="form-control" [(ngModel)]="i.amount"  >
-                                  </div>
-                                  <div *ngIf="!i.isEdit">
-                                    {{i.amount}}
-                                  </div>
-                                </td>
-                                <td>
-                                  <div *ngIf="i.isEdit">
-                                    <input type="text" class="form-control" name="status" [(ngModel)]="i.status"  >
-                                  </div>
-                                  <div *ngIf="!i.isEdit">
-                                    {{i.status}}
                                   </div>
                                 </td>
                                 <td>

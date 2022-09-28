@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     if(this.user.password == this.user.confirmPassword)
     {
       console.log("password match")
-      this.api.adduser(this.user).subscribe(
+      this.api.addrequest(this.user).subscribe(
         (data)=>{
           alert("success");
         }

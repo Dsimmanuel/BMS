@@ -10,6 +10,24 @@ export class ApiService {
     private http:HttpClient) { }
 
 
+  //student requests  
+
+
+  addrequest=(user:any)=>{
+    return this.http.post<any>("http://localhost:3000/addRequest",user)
+  }
+
+  viewrequest=()=>{
+    return this.http.get<any>("http://localhost:3000/viewRequest")
+  }
+  deleterequest=(id:any)=>{
+    return this.http.delete<any>("http://localhost:3000/deleteRequest/"+id)
+  }  
+
+
+  //Approved students  
+
+
   adduser=(user:any)=>{
     return this.http.post<any>("http://localhost:3000/register",user)
   }
@@ -43,13 +61,29 @@ export class ApiService {
   }
 
   //route
-  addroute=()=>{
-    
+  addroute=(route:any)=>{
+    return this.http.post<any>("http://localhost:3000/addRoute",route)
   }
 
   viewRoute=()=>{
     return this.http.get<any>("http://localhost:3000/viewRoute")
   }
+
+
+
+  //BoardingPoint
+
+  addbpoint=(bpoint:any)=>{
+    return this.http.post<any>("http://localhost:3000/addBpoint",bpoint)
+  }
+
+  viewbpoint=()=>{
+    return this.http.get<any>("http://localhost:3000/viewBpoint")
+  }
+  deletebpoint=(id:any)=>{
+    return this.http.delete<any>("http://localhost:3000/deleteBpoint/"+id)
+  }
+
 
   //complaint
 
