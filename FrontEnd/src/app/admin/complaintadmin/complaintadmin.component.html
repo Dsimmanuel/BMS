@@ -14,7 +14,7 @@
                           </h1>
                       
                         <hr >
-                        <div class="container" *ngFor="let i of data">
+                        <div class="row g-3" *ngFor="let i of data">
                            
                             <div class="card-header">
                                 <div class="col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
@@ -28,11 +28,42 @@
                                 <p>User's suggestion.</p>
                                 <p>{{i.right}}</p>
                                 <div class="container">
-                                    <h6 align="right" >20/10/2022</h6>
+                                    <h6 align="right" >{{i.date}}</h6>
                                 </div>
+                                <div class="card">
+
+
+
+
+                                    
+
+
+                                    <div>
+                                        <div class="card-header">
+                                            Response
+                                          </div>
+                                          <div *ngIf="i.isEdit">
+                                            <div class="col col-12 col-sm-12 col-mg-12 col-lg-12 col-xl-12 col xxl-12">
+                                                <label for="" class="form-label"></label>
+                                                <textarea name="happend" id="" cols="30" rows="5" class="form-control" [(ngModel)]="i.reply"></textarea><br>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" (click)="Updateresponse(i)">send</a>&nbsp;
+                                                <a class="btn btn-danger"(click)="i.isEdit=false">cancel</a>
+                                            </div>
+                                        </div>
+                                          <div class="card-body">
+                                           <div *ngIf="!i.isEdit">
+                                            <p class="card-text">{{i.reply}}</p>
+                                            <a  class="btn btn-success" (click)="onEdit(i)">reply</a>
+                                            
+                                          </div>
+                                        </div> 
+                                        </div>
+                                    </div>
+                                    
+                              </div>
                                 
                             </div>
-                          </div>
+                            
                           <hr>
     
                     </div>

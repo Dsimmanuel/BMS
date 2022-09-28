@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isStudent=false
+  isStudent=true
   isAdmin=true
   isDriver=false
 

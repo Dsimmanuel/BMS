@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
@@ -8,6 +9,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ComplaintComponent implements OnInit {
    complaint={
+   date: "", 
    happend:"",
    right:"",
   }
@@ -15,9 +17,11 @@ export class ComplaintComponent implements OnInit {
   constructor(private api:ApiService ) { }
 
   ngOnInit(): void {
+    
   }
 
     Complaint(){
+    
     
     console.log(this.complaint)
     this.api.addcomplaint(this.complaint).subscribe(

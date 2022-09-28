@@ -94,5 +94,15 @@ export class ApiService {
   viewcomplaint=()=>{
     return this.http.get<any>("http://localhost:3000/viewComplaint")
   }
+
+  updateresponse=(response:any)=>{
+    return this.http.put<any>("http://localhost:3000/updateResponse/"+response._id,response)
+  }
+
+
 }
+
+
+  
+  
 

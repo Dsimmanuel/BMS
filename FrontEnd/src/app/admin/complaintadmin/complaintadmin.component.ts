@@ -8,17 +8,46 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ComplaintadminComponent implements OnInit {
 
+  response={
+    reply:""
+  }
+
   constructor(private api:ApiService) {
     api.viewcomplaint().subscribe(
       (response)=>{
         this.data=response
       }
     )
-   }
+  }
 
   ngOnInit(): void {
     
   }
-  data:any=[]
+ 
+  isadd=false
+  addresponse(){
+    this.isadd=true
+  }
 
+  onEdit(item:any){
+    item.isEdit=true
+  }
+  
+  Updateresponse(i:any){
+    
+    console.log()
+    this.api.updateresponse(i).subscribe(
+      (data)=>{
+        console.log(data)
+        window.location.reload()
+      }
+      
+    )
+
+  }
+ 
+  
+
+  data:any=[]
+  
 }

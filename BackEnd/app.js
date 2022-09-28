@@ -351,6 +351,8 @@ app.get("/viewComplaint",(req,res)=>{
 
 app.post("/addComplaint",(req,res)=>{
     const data=req.body
+    data.date= new Date()
+    data.date.toISOString().slice(0, 10)
     console.log(data)
     const ob=new complaint(data)
     ob.save(
@@ -365,6 +367,31 @@ app.post("/addComplaint",(req,res)=>{
         }
     )
 })
+
+app.put('/updateResponse/:id',function(req,res){
+    
+    const id = req.params.id,
+    reply=req.body.reply
+    complaint.findByIdAndUpdate({"_id":id},
+    {$set:{"reply":reply,
+}}).then(function(){
+    complaint.find(
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                
+            }
+            else{
+                res.status(200).json({
+                    msg:data
+                })
+            }
+        }
+    )})
+  })
+
+
+
 
 
 
