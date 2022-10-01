@@ -1,0 +1,83 @@
+<p>addroute works!</p>
+<app-navbar></app-navbar>
+<div class="container" >
+  <div class="row g-3">
+      <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+          <div class="row">
+            
+              <div class="col col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1">
+                <app-sidebar></app-sidebar>
+              </div>
+              <div class="col col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 col-xxl-11">
+                <div >
+                  <h1 align="center">
+                    <small class="text-muted">Add Bus</small>
+                  </h1>
+                  <hr>
+                 
+                   
+
+
+
+                       
+                            <div class="card" style="width: 600px; margin-left:125px">
+                              <div class="card-body" >
+
+
+                                <form #routes="ngForm" class="row g-3 needs-validation" novalidate>
+                                  <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                    <label for="validationCustom01" class="form-label">Route No</label>
+                                    <input id="validationCustom01"  class="form-control" type="text" name="routeno" pattern="[0-9]*" [(ngModel)]="route.routeNo" required>
+                                    <div class="invalid-feedback">
+                                      Route no is required
+                                    </div>
+                                  </div>
+                                  <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                    <label for="validationCustom02" class="form-label">Bus No</label>
+                                    <input id="validationCustom02"  class="form-control" type="text" name="busno" pattern="[0-9]*"  [(ngModel)]="route.busNo" required>
+                                    <div class="invalid-feedback">
+                                      Bus no is required
+                                    </div>
+                                  </div>
+                                  <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                    <label for="validationCustom03" class="label">Total Seats</label>
+                                    <input id="validationCustom03" class="form-control"  name="seats" pattern="[0-9]*" [(ngModel)]="route.seats" required>
+                                    <div class="invalid-feedback">
+                                      Number of seats is required
+                                    </div>
+                                  </div>
+                                  <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                    <label for="image" class="label">Image</label>
+                                    <input id="image" class="form-control" type="file" name="image" [(ngModel)]="route.image">
+                                    
+                                  </div>
+                                  
+                                  
+                                <div class="group">
+                                  <br>
+                                  
+                                <div *ngIf="routes.valid">
+                                  <button  class="btn btn-primary button" type="submit" (click)="Addroute()" >Add</button>
+                                </div>
+                                <div *ngIf="!routes.valid">
+                                  <button  class="btn btn-primary button" >Add</button>
+                                </div>
+                                </div>
+                                </form>
+                                
+
+
+
+
+
+                              </div>
+                         
+                        
+
+
+
+
+                     
+
+  </div>
+</div>

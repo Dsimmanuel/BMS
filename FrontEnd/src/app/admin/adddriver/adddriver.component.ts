@@ -14,7 +14,7 @@ export class AdddriverComponent implements OnInit {
     contactNumber:"",
     email:"",
     driverId:"",
-    busId:"",
+    routeNo:"",
     password:""
     }
 

@@ -13,6 +13,8 @@ export class ApiService {
   //student requests  
 
 
+
+
   addrequest=(user:any)=>{
     return this.http.post<any>("http://localhost:3000/addRequest",user)
   }
@@ -25,7 +27,11 @@ export class ApiService {
   }  
 
 
+
+
   //Approved students  
+
+
 
 
   adduser=(user:any)=>{
@@ -43,7 +49,12 @@ export class ApiService {
     return this.http.put<any>("http://localhost:3000/update/"+user._id,user)
   }
 
+
+
   //driver
+
+
+
 
   adddriver=(driver:any)=>{
     return this.http.post<any>("http://localhost:3000/addDriver",driver)
@@ -60,7 +71,14 @@ export class ApiService {
     return this.http.put<any>("http://localhost:3000/updateDriver/"+driver._id,driver)
   }
 
+
+
+
+
   //route
+
+
+
   addroute=(route:any)=>{
     return this.http.post<any>("http://localhost:3000/addRoute",route)
   }
@@ -68,10 +86,21 @@ export class ApiService {
   viewRoute=()=>{
     return this.http.get<any>("http://localhost:3000/viewRoute")
   }
+  deleteroute=(id:any)=>{
+    return this.http.delete<any>("http://localhost:3000/deleteRoute/"+id)
+  }
+
+  updateroute=(driver:any)=>{
+    return this.http.put<any>("http://localhost:3000/updateRoute/"+driver._id,driver)
+  }
+
 
 
 
   //BoardingPoint
+
+
+
 
   addbpoint=(bpoint:any)=>{
     return this.http.post<any>("http://localhost:3000/addBpoint",bpoint)
@@ -83,9 +112,19 @@ export class ApiService {
   deletebpoint=(id:any)=>{
     return this.http.delete<any>("http://localhost:3000/deleteBpoint/"+id)
   }
+  viewpoint=(i:any)=>{
+    console.log(i.routeNo)
+    return this.http.post<any>("http://localhost:3000/viewbpoint",i)
+  }
+  updatebpoint=(point:any)=>{
+    return this.http.put<any>("http://localhost:3000/updateBpoint/"+point._id,point)
+  }
+
 
 
   //complaint
+
+
 
 
   addcomplaint=(complaint:any)=>{
@@ -99,6 +138,19 @@ export class ApiService {
     return this.http.put<any>("http://localhost:3000/updateResponse/"+response._id,response)
   }
 
+
+
+  //user routeDetails
+
+
+
+  
+  busdetails=(point:any)=>{
+    return this.http.post<any>("http://localhost:3000/busdetails",point)
+  }
+  driverdetails=(driver:any)=>{
+    return this.http.post<any>("http://localhost:3000/driverdetails",driver)
+  }
 
 }
 

@@ -13,7 +13,7 @@ export class DriverComponent implements OnInit {
   contactNumber:"",
   email:"",
   driverId:"",
-  busId:""
+  routeNo:""
 
   }
 

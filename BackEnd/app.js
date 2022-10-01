@@ -158,6 +158,8 @@ app.delete('/delete/:id',function(req,res){
   })
 
 
+
+
   //Driver
 
 
@@ -217,7 +219,7 @@ app.put('/updateDriver/:id',function(req,res){
     contactNumber=req.body.contactNumber,
     email=req.body.email,
     driverId=req.body.driverId,
-    busId=req.body.busId
+    routeNo=req.body.routeNo
 
     dregister.findByIdAndUpdate({"_id":id},
     {$set:{"name":name,
@@ -225,7 +227,7 @@ app.put('/updateDriver/:id',function(req,res){
     "contactNumber":contactNumber,
     "email":email,
     "driverId":driverId,
-    "busId":busId,
+    "routeNo":routeNo,
 }}).then(function(){
     dregister.find(
         (error,data)=>{
@@ -242,7 +244,13 @@ app.put('/updateDriver/:id',function(req,res){
     )})
   })
 
+
+
+
+
   //route details
+
+
 
   app.get("/viewRoute",(req,res)=>{
     
@@ -253,7 +261,6 @@ app.put('/updateDriver/:id',function(req,res){
                 
             }
             else{
-                console.log(data)
                 res.send(data)
             }
         }
@@ -262,7 +269,6 @@ app.put('/updateDriver/:id',function(req,res){
 
 app.post("/addRoute",(req,res)=>{
     const data=req.body
-    console.log(data)
     const ob=new routeDetails(data)
     ob.save(
         (error,data)=>{
@@ -276,10 +282,57 @@ app.post("/addRoute",(req,res)=>{
     )
 })
 
+app.delete('/deleteRoute/:id',function(req,res){
+    const id = req.params.id;
+    routeDetails.findByIdAndDelete(id,(error,data)=>{
+       if(error){
+        res.send(error)
+       }else{
+        res.status(200).json({
+            msg:data
+        })
+       }
+    })
+})
+
+
+app.put('/updateRoute/:id',function(req,res){
+    
+    const id = req.params.id,
+    routeNo=req.body.routeNo,
+    busNo=req.body.busNo,
+    seats=req.body.seats,
+    image=req.body.image
+   
+
+    routeDetails.findByIdAndUpdate({"_id":id},
+    {$set:{"routeNo":routeNo,
+    "busNo":busNo,
+    "seats":seats,
+    "image":image
+}}).then(function(){
+    routeDetails.find(
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                
+            }
+            else{
+                res.status(200).json({
+                    msg:data
+                })
+            }
+        }
+    )})
+  })
+
+  
 
 
 
 //Boarding Point
+
+
 
 
 app.get("/viewBpoint",(req,res)=>{
@@ -298,9 +351,25 @@ app.get("/viewBpoint",(req,res)=>{
     )
 })
 
+app.post("/viewbpoint",(req,res)=>{
+    
+    BPoint.find({routeNo:req.body.routeNo},
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                console.log(error)
+            }
+            else{
+                console.log(data)
+                res.send(data)
+            }
+        }
+    )
+   
+})
+
 app.post("/addBpoint",(req,res)=>{
     const data=req.body
-    console.log(data)
     const ob=new BPoint(data)
     ob.save(
         (error,data)=>{
@@ -331,6 +400,38 @@ app.delete('/deleteBpoint/:id',function(req,res){
 })
 
 
+app.put('/updateBpoint/:id',function(req,res){
+    
+    const id = req.params.id,
+    routeNo=req.body.routeNo,
+    stopNo=req.body.stopNo,
+    point=req.body.point,
+    time=req.body.time
+    console.log(req.body)
+    BPoint.findByIdAndUpdate({"_id":id},
+    {$set:{"routeNo":routeNo,
+    "stopNo":stopNo,
+    "point":point,
+    "time":time
+}}).then(function(){
+    BPoint.find(
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                
+            }
+            else{
+                res.status(200).json({
+                    msg:data
+                })
+            }
+        }
+    )})
+  })
+
+
+
+
 //complaints
 
 app.get("/viewComplaint",(req,res)=>{
@@ -342,7 +443,6 @@ app.get("/viewComplaint",(req,res)=>{
                 
             }
             else{
-                console.log(data)
                 res.send(data)
             }
         }
@@ -353,13 +453,11 @@ app.post("/addComplaint",(req,res)=>{
     const data=req.body
     data.date= new Date()
     data.date.toISOString().slice(0, 10)
-    console.log(data)
     const ob=new complaint(data)
     ob.save(
         (error,data)=>{
             if(error){
                 res.send(error)
-                console.log(error)
             }
             else{
                 res.send(data)
@@ -389,7 +487,43 @@ app.put('/updateResponse/:id',function(req,res){
         }
     )})
   })
+  
 
+
+
+  //user routeDetails
+
+
+
+
+  app.post("/busdetails",(req,res)=>{
+    console.log(req.body)
+
+    routeDetails.findOne({routeNo:req.body.routeNo},
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                console.log(error)
+            }else{
+                res.send(data)
+                console.log(data)
+            }
+        })
+})
+app.post("/driverdetails",(req,res)=>{
+    console.log(req.body)
+
+    dregister.findOne({routeNo:req.body.routeNo},
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                console.log(error)
+            }else{
+                res.send(data)
+                console.log(data)
+            }
+        })
+})
 
 
 

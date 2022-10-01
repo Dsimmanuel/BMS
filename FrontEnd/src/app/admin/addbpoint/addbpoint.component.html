@@ -1,0 +1,153 @@
+<app-navbar></app-navbar>
+<div class="container" >
+  <div class="row g-3">
+      <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+          <div class="row">
+            
+              <div class="col col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1">
+                <app-sidebar></app-sidebar>
+              </div>
+              <div class="col col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 col-xxl-11">
+                <div >
+                  <h1 align="center">
+                    <small class="text-muted">Add Route</small>
+                  </h1>
+                  <hr>
+                  <br><br>
+                 
+                    <div class="row">
+                        
+                      <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                        <div class="container" >
+                           
+                        <div class="row">
+                            
+                            <div class="col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6" align="center">
+                                <label for="">Select route no : &nbsp;&nbsp;</label>
+                                <select name="" id="" >
+                                    
+                                    <option *ngFor="let j of data1" (click)="add(this.j)">{{j.routeNo}}</option>
+                                 
+                                </select>
+                             </div> 
+                             
+                           
+                        </div>
+
+
+                        </div><br><br><br>
+
+                          <div class="col-sm-6" style="margin-left: 325px;">
+                            <div class="card">
+                              <div class="card-body">
+
+
+
+                                <table class="table" width="300px" >
+                                  <thead class="table-secondary">
+                                    <tr>
+                                        <th scope="col">Stop No</th>
+                                      <th scope="col">Stops</th>
+                                      <th scope="col">Time</th>
+                                      <th colspan="2"><button class="btn btn-success" (click)="IsAdd()">Add </button></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody >
+                                    <tr *ngFor="let i of data">
+                                        <td>
+                                        
+                                            <div *ngIf="i.isEdit">
+                                              <input type="text" name="username" class="form-control" [(ngModel)]="i.stopNo" >
+                                            </div>
+                                            <div *ngIf="!i.isEdit">
+                                              {{i.stopNo}}
+                                            </div>
+                                          </td>
+                                      
+                                      <td>
+                                        
+                                        <div *ngIf="i.isEdit">
+                                          <input type="text" name="username" class="form-control" [(ngModel)]="i.point">
+                                        </div>
+                                        <div *ngIf="!i.isEdit">
+                                          {{i.point}}
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div *ngIf="i.isEdit">
+                                          <input type="text" name="number" class="form-control"  [(ngModel)]="i.time" >
+                                        </div>
+                                        
+                                        <div *ngIf="!i.isEdit">
+                                          {{i.time}}
+                                        </div>
+          
+                                      </td>
+                                        <div *ngIf="!i.isEdit">
+                                          <table class="g-3">
+                                            <tr>
+                                              <td><button class="btn btn-primary" (click)="onEdit(i)">Edit</button></td>
+                                              &nbsp;
+                                              <td><button class="btn btn-danger" (click)="Deletebpoint(i)" >Delete</button></td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                        <div *ngIf="i.isEdit">
+                                          <table class="g-3">
+                                            <tr>
+                                              <td><button class="btn btn-primary" (click)="Updatebpoint(i)">update</button></td>
+                                              &nbsp;
+                                              <td> <button class="btn btn-danger" (click)="i.isEdit = false">cancel</button></td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <div *ngIf="isAdd">
+                                          <input type="text" name="username" class="form-control" [(ngModel)]="boardingPoints.stopNo">
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div *ngIf="isAdd">
+                                          <input type="text" name="username" class="form-control" [(ngModel)]="boardingPoints.point">
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div *ngIf="isAdd">
+                                          <input type="text" name="number" class="form-control"  [(ngModel)]="boardingPoints.time" >
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div *ngIf="isAdd ">
+                                          <table class="g-3">
+                                            <tr>
+                                              
+                                              <td><button class="btn btn-primary" (click)="Addbpoint()">save</button></td>
+                                              &nbsp;
+                                              <td> <button class="btn btn-danger" (click)="isAdd = false">cancel</button></td>
+                                            </tr>
+                                          </table>
+                                        </div>
+          
+                                      </td>  
+                                    </tr>
+                                  </tbody>
+                              </table>
+                                
+
+
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+                     
+          </div>
+      </div>
+  </div>
+</div>

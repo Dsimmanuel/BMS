@@ -8,6 +8,14 @@ import { ApiService } from 'src/app/api.service';
 })
 export class RouteadminComponent implements OnInit {
 
+  route={
+    routeNo:"",
+    busNo:"",
+    seats:"",
+    image:"",
+
+    }
+
   constructor(private api:ApiService) {
     api.viewRoute().subscribe(
       (response)=>{
@@ -15,7 +23,46 @@ export class RouteadminComponent implements OnInit {
         
       }
     )
+    
+
+    
+    }
+      
+  
+
+  onEdit(item:any) {
+    item.isEdit = true
   }
+  isAdd =false
+  
+ IsAdd(){
+   this.isAdd=true 
+ } 
+
+  Deleteroute(datas:any){
+    this.api.deleteroute(datas._id).subscribe(
+      (data)=>{
+         console.log(data);
+         this.data = this.data.filter((u:any)=>u!==datas)
+      }
+    )
+
+  }
+  
+  Updateroute(i:any){
+    
+    console.log()
+    this.api.updateroute(i).subscribe(
+      (data)=>{
+        console.log(data)
+        window.location.reload()
+      }
+      
+    )
+
+  }
+  
+
    
 
   ngOnInit(): void {

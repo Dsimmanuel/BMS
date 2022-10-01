@@ -19,12 +19,12 @@
                           <table class="table">
                               <thead class="table-secondary">
                                 <tr>
-                                  <th scope="col">Bus Id</th>
+                                  <th scope="col">Route No</th>
                                   <th scope="col">Bus no</th>
                                   <th scope="col">Total seats</th>
                                   <th scope="col">Image</th>
                                   <th scope="col">Boarding Point</th>
-                                  <th colspan="2"><a routerLink="/addRoute"><button class="btn btn-success" >Add Route</button></a></th>
+                                  <th colspan="2"><a routerLink="/addroute"><button class="btn btn-success" >Add Route</button></a></th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -62,12 +62,29 @@
                                     </div>
                                   </td>
                                   <td>
-                                    <div *ngIf="i.isEdit">
-                                      <input type="text" name="bpoint" class="form-control" [(ngModel)]="i.boardingPoint"  >
-                                    </div>
+                                    <a href="/addbpoint"><button class="btn btn-success">Edit boardingPoints</button></a>
+                                  <td>
                                     <div *ngIf="!i.isEdit">
-                                      {{i.boardingPoint}}
+                                      <table class="g-3">
+                                        <tr>
+                                          <td><button class="btn btn-primary" (click)="onEdit(i)">Edit</button></td>
+                                          &nbsp;
+                                          <td><button class="btn btn-danger"  (click)="Deleteroute(i)">Delete</button></td>
+                                        </tr>
+                                      </table>
                                     </div>
+                                    <div *ngIf="i.isEdit">
+                                      <table class="g-3">
+                                        <tr>
+                                          <td><button class="btn btn-primary" (click)="Updateroute(i)">save</button></td>
+                                          &nbsp;
+                                          <td> <button class="btn btn-danger" (click)="i.isEdit = false">cancel</button></td>
+                                        </tr>
+                                      </table>
+                                    </div>
+                                    
+                                  
+                                  </td> 
                                  
                                   
                                 </tr>

@@ -6,7 +6,7 @@ const driverSchema = new schema({
     contactNumber :{type: Number,required :true},
     email :{type:String,required :true},
     driverId : {type: Number,required :true},
-    busId : {type:Number},
+    routeNo : {type:Number},
     password : {type: String,required :true}
 })
 var dregister = Mongoose.model("Dregisters",driverSchema);
