@@ -10,7 +10,8 @@ const registerSchema = new schema({
     email :{type:String,required :true},
     boardingPoint : {type: String,required :true},
     password : {type: String,required :true},
-    routeNo : { type: Number}
+    routeNo : { type: Number},
+    role : { type : String}
 })
 var register = Mongoose.model("registers",registerSchema);
 module.exports = {register}

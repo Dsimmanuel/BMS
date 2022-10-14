@@ -1,41 +1,47 @@
 <div class="main">
-    <div class="container">
-      <div class="row ">
-          <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 g-3 ">
-            <div class="page">
-                <div class="wrapper">
-                  <div class="sidebar">
-                    <ul>
-                        
-                        <li class="nav-item">
-                            <a routerLink="/student" routerLinkActive="active-link">
-                                <span class="icon"><i class="fas fa-desktop"></i></span>
-                                <span class="item">Student Details</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a routerLink="/driver" routerLinkActive="active-link">
-                                <span class="icon"><i class="fas fa-user-friends"></i></span>
-                                <span class="item">Driver Details</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                          <a routerLink="/routeDetails" routerLinkActive="active-link">
-                              <span class="icon"><i class="fas fa-user-friends"></i></span>
-                              <span class="item">Route Details</span>
+  <div class="container">
+    <div class="row ">
+        <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 g-3 ">
+          <div class="page">
+              <div class="wrapper">
+                <div class="sidebar">
+                  <ul>
+                      
+                      <li class="nav-item">
+                          <a routerLink="/student" routerLinkActive="active-link">
+                              <span class="icon"><i class="fas fa-desktop"></i></span>
+                              <span class="item">Student Details</span>
                           </a>
                       </li>
-                        <li class="nav-item">
-                          <a routerLink="/viewComplaint" routerLinkActive="active-link">
+                      <li class="nav-item">
+                          <a routerLink="/driver" routerLinkActive="active-link">
                               <span class="icon"><i class="fas fa-user-friends"></i></span>
-                              <span class="item">Complaints</span>
+                              <span class="item">Driver Details</span>
                           </a>
-                        </li>
-                      
-                      </ul>
-                  </div>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/routeDetails" routerLinkActive="active-link">
+                            <span class="icon"><i class="fas fa-user-friends"></i></span>
+                            <span class="item">Route Details</span>
+                        </a>
+                    </li>
+                      <li class="nav-item">
+                        <a routerLink="/viewComplaint" routerLinkActive="active-link">
+                            <span class="icon"><i class="fas fa-user-friends"></i></span>
+                            <span class="item">Complaints</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a>
+                            <span class="icon"><i class="fas fa-user-friends"></i></span>
+                            <span class="item" (click)="logout()">Logout</span>
+                        </a>
+                      </li>
+                    
+                    </ul>
                 </div>
               </div>
-          </div>
+            </div>
         </div>
-    </div>
+      </div>
+  </div>

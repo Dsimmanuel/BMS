@@ -1,56 +1,62 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-     
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <ng-container *ngIf="isStudent; then Student"></ng-container>
-          <ng-container *ngIf="isAdmin ; then Admin"></ng-container>
-          <ng-container *ngIf="isDriver; then Driver "></ng-container>
-          <ng-container *ngIf="!isStudent && !isAdmin && !isDriver; then commonUser;"></ng-container>
-          
-          <ng-template #Student>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/route" routerLinkActive="active-link">Route details</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/complaint" routerLinkActive="active-link">Complaint</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/account" routerLinkActive="active-link">Account</a>
-            </li>
-          </ng-template>
-
-          <ng-template #Admin>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/student" routerLinkActive="active-link">Admin</a>
-            </li>
-            
-  
-          </ng-template>
-
-          <ng-template #Driver>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/routeDetails" routerLinkActive="active-link">Route details</a>
-            </li>
-          </ng-template>
-          
-          <ng-template #commonUser>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/" routerLinkActive="active-link" >Home</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/login" routerLinkActive="active-link">Login</a>
-            </li>
-  
-
-          </ng-template>
-          
-        </ul>
+  <div class="container-fluid">
+   
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <ng-container *ngIf="isStudent; then Student"></ng-container>
+        <ng-container *ngIf="isAdmin ; then Admin"></ng-container>
+        <ng-container *ngIf="isDriver; then Driver "></ng-container>
+        <ng-container *ngIf="!isStudent && !isAdmin && !isDriver; then commonUser;"></ng-container>
         
-      </div>
+        <ng-template #Student>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/route" routerLinkActive="active-link">Route details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/complaint" routerLinkActive="active-link">Complaint</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/account" routerLinkActive="active-link">Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">logout</a>
+          </li>
+        </ng-template>
+
+        <ng-template #Admin>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/student" routerLinkActive="active-link">Admin</a>
+          </li>
+          
+
+        </ng-template>
+
+        <ng-template #Driver>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/route" routerLinkActive="active-link">Route details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">logout</a>
+          </li>
+        </ng-template>
+        
+        <ng-template #commonUser>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active-link" >Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active-link">Login</a>
+          </li>
+
+
+        </ng-template>
+        
+      </ul>
+      
     </div>
-  </nav>
+  </div>
+</nav>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private api:ApiService,
+    private route:Router) { }
 
   ngOnInit(): void {
+  }
+  logout(){
+    this.api.deletetokenuser()
+    this.api.deleterole()
+    this.route.navigate(['/login'])
   }
 
 }

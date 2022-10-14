@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 
 @Component({
   selector: 'app-login',
+  template: ` `,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  login={
+    luserName:"",
+    lpassword:""
+  }
+
   user={
     name:"",
     userName:"",
@@ -24,11 +31,16 @@ export class LoginComponent implements OnInit {
     pass:""
   }
 
+  logdata:any=[]
 
-  constructor(private api:ApiService) { }
+
+  constructor(private api:ApiService,
+    private route:Router ) {
+    
+   }
 
   ngOnInit(): void {
-
+    
     (function () {
       
       var forms = document.querySelectorAll('.needs-validation')
@@ -66,6 +78,38 @@ export class LoginComponent implements OnInit {
       alert("password doesn't match !")
     }
   }
-  
 
+
+  Login(){
+    console.log(this.login)
+    this.api.login(this.login).subscribe(
+      (response)=>{
+        this.logdata=response
+        this.api.saveUser(this.logdata)
+        this.response = this.api.getUser()
+        
+        if(this.response){ 
+          console.log(this.response)
+          console.log(this.response.data.role)
+          if(this.response.data.role == "admin"){
+            this.api.saveRole("admin")
+            this.route.navigate(['/student'])
+            
+          }
+          if(this.response.data.role == "driver"){
+            this.api.saveRole("driver")
+            this.route.navigate(['/route'])
+          }
+          if(this.response.data.role == "student"){
+            this.api.saveRole("student")
+            this.route.navigate(['/route'])
+          }
+        
+        }
+      }
+    )
+  }
+  response:any=[]
+
+  
 }

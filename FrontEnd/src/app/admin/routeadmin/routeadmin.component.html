@@ -23,8 +23,14 @@
                                   <th scope="col">Bus no</th>
                                   <th scope="col">Total seats</th>
                                   <th scope="col">Image</th>
-                                  <th scope="col">Boarding Point</th>
-                                  <th colspan="2"><a routerLink="/addroute"><button class="btn btn-success" >Add Route</button></a></th>
+                                  <th>
+                                    <table>
+                                      
+                                      <tr > 
+                                      <th><a routerLink="/addroute"><button class="btn btn-success" >Add Route</button></a></th>&nbsp;&nbsp;&nbsp;&nbsp;
+                                      <th><a href="/addbpoint"><button class="btn btn-success">Edit boardingPoints</button></a></th> 
+                                    </tr>
+                                  </table>
                                 </tr>
                               </thead>
                               <tbody>
@@ -61,8 +67,6 @@
                                       {{i.image}}
                                     </div>
                                   </td>
-                                  <td>
-                                    <a href="/addbpoint"><button class="btn btn-success">Edit boardingPoints</button></a>
                                   <td>
                                     <div *ngIf="!i.isEdit">
                                       <table class="g-3">

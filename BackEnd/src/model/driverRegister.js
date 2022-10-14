@@ -7,7 +7,8 @@ const driverSchema = new schema({
     email :{type:String,required :true},
     driverId : {type: Number,required :true},
     routeNo : {type:Number},
-    password : {type: String,required :true}
+    password : {type: String,required :true},
+    role: {type:String}
 })
 var dregister = Mongoose.model("Dregisters",driverSchema);
 module.exports = {dregister}

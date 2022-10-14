@@ -8,6 +8,7 @@ const {routeDetails}=require("./src/model/routeDetails")
 const { complaint } = require("./src/model/complaint")
 const { BPoint } = require("./src/model/bPoint")
 const { request } = require("./src/model/stuRequest")
+const { Admin } = require("./src/model/admin")
 
 
 const app=Express()
@@ -43,20 +44,77 @@ app.get("/viewRequest",(req,res)=>{
     )
 })
 
-app.post("/addRequest",(req,res)=>{
-    const data=req.body
-    const ob=new request(data)
-    ob.save(
-        (error,data)=>{
-            if(error){
-                res.send(error)
-            }
-            else{
-                res.send(data)
-            }
+app.post("/request",(req,res)=>{
+    console.log(req.body.userName)
+    register.findOne({
+        userName: req.body.userName
+      },(error, data) => {
+        if (error) {
+          console.log(error)
+          res.status(500).send({ message: err });
+          return;
         }
-    )
+    
+        if (data) {
+          res.status(400).send({ message: "Failed! Username is already in use!" });
+          return;
+        }else{
+            dregister.findOne({
+                userName: req.body.userName
+              },(error, data) => {
+                if (error) {
+                  console.log(error)
+                  res.status(500).send({ message: err });
+                  return;
+                }
+            
+                if (data) {
+                  res.status(400).send({ message: "Failed! Username is already in use!" });
+                  return;
+                }else{
+
+            console.log(data)
+            register.findOne({
+                email: req.body.email
+              },(error, data) => {
+                if (error) {
+                  console.log(error)
+                  res.status(500).send({ message: err });
+                  return;
+                }
+            
+                if (data) {
+                  res.status(400).send({ message: "Failed! Email is already in use!" });
+                  return;
+                }else{
+            
+                    const data=req.body
+                    console.log(data)
+                    const ob=new request(data)
+                    ob.save(
+                    (error,data)=>{
+                        if(error){
+                          res.send(error)
+                        }
+                        else{
+                        res.send(data)
+            
+                        }
+                    })
+
+
+                }
+            
+            })
+            }
+    
 })
+
+}
+  
+})
+})
+
 
 app.delete('/deleteRequest/:id',function(req,res){
     const id = req.params.id;
@@ -90,6 +148,8 @@ app.get("/home",(req,res)=>{
 
 app.post("/register",(req,res)=>{
     const data=req.body
+    data.role = "student"
+    console.log(data)
     const ob=new register(data)
     ob.save(
         (error,data)=>{
@@ -102,6 +162,7 @@ app.post("/register",(req,res)=>{
         }
     )
 })
+
 
 app.delete('/delete/:id',function(req,res){
     const id = req.params.id;
@@ -160,6 +221,41 @@ app.delete('/delete/:id',function(req,res){
 
 
 
+  //admin
+
+  app.get("/viewAdmin",(req,res)=>{
+    Admin.find(
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                
+            }
+            else{
+                res.send(data)
+            }
+        }
+    )
+})
+
+
+  app.post("/admin",(req,res)=>{
+    const data=req.body
+    const ob=new Admin(data)
+    ob.save(
+        (error,data)=>{
+            if(error){
+                res.send(error)
+            }
+            else{
+                res.send(data)
+            }
+        }
+    )
+  })
+
+
+
+
   //Driver
 
 
@@ -180,19 +276,66 @@ app.delete('/delete/:id',function(req,res){
 
 
 app.post("/addDriver",(req,res)=>{
-    const data=req.body
-    console.log(data)
-    const ob=new dregister(data)
-    ob.save(
-        (error,data)=>{
-            if(error){
-                res.send(error)
-            }
-            else{
-                res.send(data)
-            }
+   
+    dregister.findOne({
+        userName: req.body.userName
+      },(error, data) => {
+        if (error) {
+          console.log(error)
+          res.status(500).send({ message: err });
+          return;
         }
-    )
+    
+        if (data) {
+          res.status(400).send({ message: "Failed! Username is already in use!" });
+          return;
+        }else{
+            register.findOne({
+                userName: req.body.userName
+              },(error, data) => {
+                if (error) {
+                  console.log(error)
+                  res.status(500).send({ message: err });
+                  return;
+                }
+            
+                else{if (data) {
+                  res.status(400).send({ message: "Failed! Username is already in use!" });
+                  return;
+                }
+            console.log(data)
+            dregister.findOne({
+                email: req.body.email
+              },(error, data) => {
+                if (error) {
+                  console.log(error)
+                  res.status(500).send({ message: err });
+                  return;
+                }
+            
+                if (data) {
+                  res.status(400).send({ message: "Failed! Email is already in use!" });
+                  return;
+                }else{
+            
+                    const data=req.body
+                    console.log(data)
+                    data.role = "driver"
+                    const ob=new dregister(data)
+                    ob.save((error,data)=>{
+                    if(error){
+                        res.send(error)
+                    }
+                    else{
+                         res.send(data)
+                    }
+                })
+                }
+            })
+}
+})
+}
+})
 })
 
 
@@ -244,6 +387,79 @@ app.put('/updateDriver/:id',function(req,res){
     )})
   })
 
+
+
+
+
+  //LOGIN
+
+
+
+  app.post("/login",(req,res)=>{
+    console.log(req.body)
+    Admin.findOne({
+        userName: req.body.luserName
+    },(error,data)=>{
+        if (error) {
+            console.log(error)
+            res.status(500).send({ message: err });
+            return;
+        }  
+        if (data) {
+            if (req.body.lpassword == data.password) {
+              res.json({data})
+            }
+            else{
+            res.status(400).send({ message: "username4 or password doesnot match" });
+            return;
+        }
+        }else{
+            register.findOne({
+                userName: req.body.luserName 
+            },(error,data)=>{
+                if (error) {
+                    console.log(error)
+                    res.status(500).send({ message: err });
+                    return;
+                }
+                if (data) {
+                    console.log("1")
+                    console.log(data)
+                    if (req.body.lpassword == data.password) {
+                        res.json({data})
+                    }
+                    else{
+                    res.status(400).send({ message: "username3 or password doesnot match" });
+                    return;
+                }
+                }else{
+                    dregister.findOne({
+                        userName: req.body.luserName 
+                    },(error,data)=>{
+                        if (error) {
+                            console.log(error)
+                            res.status(500).send({ message: err });
+                            return;
+                        }
+                        if (data) {
+                            console.log("2")
+                            if (req.body.lpassword == data.password) {
+                                res.json({data})
+                            }
+                            else{
+                            res.status(400).send({ message: "username2 or password doesnot match" });
+                            return;
+                        }
+                        }else{
+                            res.send("username1 or password doesnot match");
+                            return;
+                        }  
+                    })
+                }  
+            })
+        }
+    })
+  })
 
 
 

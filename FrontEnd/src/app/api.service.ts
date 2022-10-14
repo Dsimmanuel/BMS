@@ -1,13 +1,59 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
+   USER_KEY:any='user'
+   role_key:any
+ 
   constructor(
-    private http:HttpClient) { }
+    private http:HttpClient,
+    ) { }
+
+
+  //
+  log:any=[]
+  login=(login:any)=>{
+    return this.log = this.http.post<any>("http://localhost:3000/login",login) 
+  }
+  public saveUser(user: any): void {
+    window.sessionStorage.removeItem(this.USER_KEY);
+    window.sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
+
+  }
+
+  public getUser(): any {
+    const user = window.sessionStorage.getItem(this.USER_KEY);
+    if (user) {
+      return JSON.parse(user);
+    }
+  }
+  public deletetokenuser():any{
+    window.sessionStorage.removeItem(this.USER_KEY);
+  }
+  public saveRole(role: any): void {
+    window.sessionStorage.removeItem(this.role_key);
+    window.sessionStorage.setItem(this.role_key, JSON.stringify(role));
+   
+  }
+  public getRole(): any {
+    
+    const role = window.sessionStorage.getItem(this.role_key);
+    console.log(role)
+    if (role) {
+      return JSON.parse(role);
+    }
+  }
+  public deleterole():any{
+    window.sessionStorage.removeItem(this.role_key);
+    console.log(window.sessionStorage.getItem(this.USER_KEY))
+  }
+
+ 
+ 
 
 
   //student requests  
@@ -16,7 +62,7 @@ export class ApiService {
 
 
   addrequest=(user:any)=>{
-    return this.http.post<any>("http://localhost:3000/addRequest",user)
+    return this.http.post<any>("http://localhost:3000/request",user)
   }
 
   viewrequest=()=>{
