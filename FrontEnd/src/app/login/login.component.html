@@ -25,6 +25,8 @@
                             <div class="group">
                                 <input type="submit" class="button" value="Sign In" (click)="Login()">
                             </div>
+                            <div id="response" *ngIf="message">{{message}}</div>
+                            
                             <div class="hr"></div>
                             <div class="foot-lnk">
                                 <a href="#forgot">Forgot Password?</a>
@@ -102,10 +104,8 @@
                             <div class="group">
                                 <label for="board" class="label">BoardingPoint</label>
                                 <select id="board" type="text" name="bpoint" [(ngModel)]="user.boardingPoint" class="select" required>
-                                    <option value="Trivandrum">Trivandrum</option>
-                                    <option value="Neyyattinkara">Neyyattinkara</option>
-                                    <option value="Maranalloor">Maranalloor</option>
-                                    <option value="Balaramapuram">Balaramapuram</option>
+                                  <option>select</option>
+                                  <option *ngFor="let i of data2" align="center">{{i}}</option>   
                                 </select>
                             </div>
                              
@@ -143,6 +143,7 @@
                                 <div class="group" *ngIf="!register.valid">
                                   <input  class="button" type="submit" value="Register">
                                 </div>
+                                
                             <div class="foot-lnk">
                               <label for="tab-1">Already Member?</label>
                             </div>

@@ -7,17 +7,28 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./routedetails.component.css']
 })
 export class RoutedetailsComponent implements OnInit {
-
+  user:any=[]
+  user1:any=[]
   constructor(private api:ApiService) { 
     this.api.viewbpoint().subscribe(
       
       (response)=>{
         this.data2=response
-        console.log(this.data2)
+        this.data4= this.data2.filter(function(x:any) { return x !== "Maranalloor"; });
+        console.log(this.data4)
         
         
       }
     )
+  this.user=this.api.getUser()
+  console.log("hai")
+  console.log(this.user)
+  console.log(this.user.data.boardingPoint)
+  if(this.user.data.boardingPoint){
+    this.user1=this.user.data.boardingPoint
+    this.checkBpoint(this.user1)
+  }
+
   }
 
   ngOnInit(): void {
@@ -26,7 +37,6 @@ export class RoutedetailsComponent implements OnInit {
 
   checkBpoint(i:any){
     console.log(i)
-    console.log(i.routeNo)
     this.api.driverdetails(i).subscribe(
       
       (response)=>{
@@ -47,7 +57,7 @@ export class RoutedetailsComponent implements OnInit {
       }
     )
 
-    this.api.viewpoint(i).subscribe(
+    this.api.getbpoint(i).subscribe(
       
       (response)=>{
         this.data=response
@@ -64,6 +74,7 @@ export class RoutedetailsComponent implements OnInit {
   data1:any=[]
   data2:any=[]
   data3:any=[]
+  data4:any=[]
 
 
 }

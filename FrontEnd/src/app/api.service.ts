@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Observable } from 'rxjs';
+import { NavbarComponent } from './sharepage/navbar/navbar.component';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ export class ApiService {
  
   constructor(
     private http:HttpClient,
+    private route:Router
     ) { }
 
 
@@ -183,8 +186,13 @@ export class ApiService {
   updateresponse=(response:any)=>{
     return this.http.put<any>("http://localhost:3000/updateResponse/"+response._id,response)
   }
-
-
+  
+  deletecomplaint=(id:any)=>{
+    return this.http.delete<any>("http://localhost:3000/deletecomplaint/"+id)
+  }
+  responsecomplaint=(i:any)=>{
+    return this.http.post<any>("http://localhost:3000/responsecomplaint",i)
+  }
 
   //user routeDetails
 
@@ -192,12 +200,14 @@ export class ApiService {
 
   
   busdetails=(point:any)=>{
-    return this.http.post<any>("http://localhost:3000/busdetails",point)
+    return this.http.post<any>("http://localhost:3000/busdetails/"+point,point)
   }
   driverdetails=(driver:any)=>{
-    return this.http.post<any>("http://localhost:3000/driverdetails",driver)
+    return this.http.post<any>("http://localhost:3000/driverdetails/"+driver,driver)
   }
-
+  getbpoint=(point:any)=>{
+    return this.http.post<any>("http://localhost:3000/getbpoint/"+point,point)
+  }
 }
 
 

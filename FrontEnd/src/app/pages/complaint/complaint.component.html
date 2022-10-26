@@ -20,12 +20,45 @@
                     <label for="" class="form-label">How can we make things right?</label>
                     <textarea name="right" id="" cols="30" rows="5" class="form-control" [(ngModel)]="complaint.right"></textarea><br>
                 </div>        
+
                 <div class="col col-12 col-sm-6 col-mg-6 col-lg-6 col-xl-6 col xxl-6">
-                    <button class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
+                  <button class="btn btn-primary">Submit</button>
+                  &nbsp;&nbsp;&nbsp;<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" (click)="response()">Response</button>
+
+                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasRightLabel">Admin Response !</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      
+                      <div class="card modal-body mb-3" *ngFor="let i of data">
+                        <div class="card-body" >
+                            
+                          <div class="card mb-3">
+                            <div class="card-body">
+                            <label for="recipient-name" class="col-form-label">Your Complaint</label><br><br>
+                            <label for="" class="card-title">What has Happend?</label><br><br>
+                            <label for="" class="card-text">{{i.happend}}</label><br><br>
+                            <label for="" class="card-title">How can we make things right?</label><br><br>
+                            <label for="" class="card-text">{{i.right}}</label><br>
+                          </div>
+                        </div>
+                          <div class="card mb-3">
+                            <div class="card-body">
+                            <label for="message-text" class="card-title">Response</label><br><br>
+                            <label for="message-text" class="card-text">{{i.reply}}</label>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                       </div>
+                  </div>                
+                        
+                       </div>
+                       </div>
+                       </form>
+                      </div>
+                         </div>
+                       </div>
 <app-footer></app-footer>

@@ -16,6 +16,7 @@ export class ComplaintadminComponent implements OnInit {
     api.viewcomplaint().subscribe(
       (response)=>{
         this.data=response
+        console.log(this.data)
       }
     )
   }
@@ -35,15 +36,28 @@ export class ComplaintadminComponent implements OnInit {
   
   Updateresponse(i:any){
     
-    console.log()
     this.api.updateresponse(i).subscribe(
       (data)=>{
         console.log(data)
-        window.location.reload()
+        this.api.viewcomplaint().subscribe(
+          (response)=>{
+            this.data=response
+            console.log(this.data)
+          }
+        )
       }
       
     )
+  }
 
+  Delete(i:any){
+    console.log(i)
+    this.api.deletecomplaint(i._id).subscribe(
+      (data)=>{
+         console.log(data);
+         this.data = this.data.filter((u:any)=>u!==i)
+      }
+    )
   }
  
   

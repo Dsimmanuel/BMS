@@ -9,15 +9,26 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ComplaintComponent implements OnInit {
    complaint={
-   date: "", 
+   userName:"",
+   registerNumber:"",
+   date:"", 
    happend:"",
    right:"",
   }
+  getc={
+    userName:"",
+  }
 
   constructor(private api:ApiService ) { }
-
+  user:any=[]
   ngOnInit(): void {
-    
+    this.user = this.api.getUser()
+    if(this.user){
+      console.log(this.user)
+      this.complaint.userName=this.user.data.userName
+      this.complaint.registerNumber=this.user.data.registerNumber
+      this.getc.userName=this.user.data.userName
+    }
   }
 
     Complaint(){
@@ -31,6 +42,15 @@ export class ComplaintComponent implements OnInit {
       }
     )
   }
-  
 
+  response(){
+    this.api.responsecomplaint(this.getc).subscribe(
+      (data)=>{
+        this.data=data
+        console.log(data)
+      }
+    )
+  }
+  
+ data:any=[]
 }

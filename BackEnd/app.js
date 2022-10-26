@@ -35,7 +35,7 @@ app.get("/viewRequest",(req,res)=>{
         (error,data)=>{
             if(error){
                 res.send(error)
-                
+                return
             }
             else{
                 res.send(data)
@@ -46,7 +46,7 @@ app.get("/viewRequest",(req,res)=>{
 
 app.post("/request",(req,res)=>{
     console.log(req.body.userName)
-    register.findOne({
+    Admin.findOne({
         userName: req.body.userName
       },(error, data) => {
         if (error) {
@@ -56,10 +56,11 @@ app.post("/request",(req,res)=>{
         }
     
         if (data) {
-          res.status(400).send({ message: "Failed! Username is already in use!" });
+          res.status(400).send({ message: "Failed! Username1 is already in use!" });
           return;
         }else{
-            dregister.findOne({
+
+            register.findOne({
                 userName: req.body.userName
               },(error, data) => {
                 if (error) {
@@ -72,47 +73,66 @@ app.post("/request",(req,res)=>{
                   res.status(400).send({ message: "Failed! Username is already in use!" });
                   return;
                 }else{
-
-            console.log(data)
-            register.findOne({
-                email: req.body.email
-              },(error, data) => {
-                if (error) {
-                  console.log(error)
-                  res.status(500).send({ message: err });
-                  return;
-                }
-            
-                if (data) {
-                  res.status(400).send({ message: "Failed! Email is already in use!" });
-                  return;
-                }else{
-            
-                    const data=req.body
+                    dregister.findOne({
+                        userName: req.body.userName
+                      },(error, data) => {
+                        if (error) {
+                          console.log(error)
+                          res.status(500).send({ message: err });
+                          return;
+                        }
+                    
+                        if (data) {
+                          res.status(400).send({ message: "Failed! Username is already in use!" });
+                          return;
+                        }else{
+        
                     console.log(data)
-                    const ob=new request(data)
-                    ob.save(
-                    (error,data)=>{
-                        if(error){
-                          res.send(error)
+                    register.findOne({
+                        email: req.body.email
+                      },(error, data) => {
+                        if (error) {
+                          console.log(error)
+                          res.status(500).send({ message: err });
+                          return;
                         }
-                        else{
-                        res.send(data)
-            
+                    
+                        if (data) {
+                          res.status(400).send({ message: "Failed! Email is already in use!" });
+                          return;
+                        }else{
+                    
+                            const data=req.body
+                            console.log(data.userName)
+                            console.log(data)
+                            const ob=new request(data)
+                            ob.save(
+                            (error,data)=>{
+                                if(error){
+                                  res.send(error)
+                                  return
+                                }
+                                else{
+                                  res.send(data)
+                    
+                                }
+                            })
+        
+        
                         }
+                    
                     })
-
-
-                }
+                    }
             
-            })
-            }
-    
-})
+        })
+        
+        }
+          
+        })
 
-}
-  
-})
+        }
+    })
+    
 })
 
 
@@ -121,6 +141,7 @@ app.delete('/deleteRequest/:id',function(req,res){
     request.findByIdAndDelete(id,(error,data)=>{
        if(error){
         res.send(error)
+        return
        }else{
         res.status(200).json({
             msg:data
@@ -137,6 +158,7 @@ app.get("/home",(req,res)=>{
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
                 
             }
             else{
@@ -155,6 +177,7 @@ app.post("/register",(req,res)=>{
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
             }
             else{
                 res.send(data)
@@ -169,6 +192,7 @@ app.delete('/delete/:id',function(req,res){
     register.findByIdAndDelete(id,(error,data)=>{
        if(error){
         res.send(error)
+        return
        }else{
         res.status(200).json({
             msg:data
@@ -207,7 +231,7 @@ app.delete('/delete/:id',function(req,res){
         (error,data)=>{
             if(error){
                 res.send(error)
-                
+                return
             }
             else{
                 res.status(200).json({
@@ -228,7 +252,7 @@ app.delete('/delete/:id',function(req,res){
         (error,data)=>{
             if(error){
                 res.send(error)
-                
+                return
             }
             else{
                 res.send(data)
@@ -245,6 +269,7 @@ app.delete('/delete/:id',function(req,res){
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
             }
             else{
                 res.send(data)
@@ -265,7 +290,7 @@ app.delete('/delete/:id',function(req,res){
         (error,data)=>{
             if(error){
                 res.send(error)
-                
+                return
             }
             else{
                 res.send(data)
@@ -276,8 +301,7 @@ app.delete('/delete/:id',function(req,res){
 
 
 app.post("/addDriver",(req,res)=>{
-   
-    dregister.findOne({
+    Admin.findOne({
         userName: req.body.userName
       },(error, data) => {
         if (error) {
@@ -287,10 +311,10 @@ app.post("/addDriver",(req,res)=>{
         }
     
         if (data) {
-          res.status(400).send({ message: "Failed! Username is already in use!" });
+          res.status(400).send({ message: "Failed! Username1 is already in use!" });
           return;
         }else{
-            register.findOne({
+            dregister.findOne({
                 userName: req.body.userName
               },(error, data) => {
                 if (error) {
@@ -299,43 +323,60 @@ app.post("/addDriver",(req,res)=>{
                   return;
                 }
             
-                else{if (data) {
+                if (data) {
                   res.status(400).send({ message: "Failed! Username is already in use!" });
                   return;
-                }
-            console.log(data)
-            dregister.findOne({
-                email: req.body.email
-              },(error, data) => {
-                if (error) {
-                  console.log(error)
-                  res.status(500).send({ message: err });
-                  return;
-                }
-            
-                if (data) {
-                  res.status(400).send({ message: "Failed! Email is already in use!" });
-                  return;
                 }else{
-            
-                    const data=req.body
+                    register.findOne({
+                        userName: req.body.userName
+                      },(error, data) => {
+                        if (error) {
+                          console.log(error)
+                          res.status(500).send({ message: err });
+                          return;
+                        }
+                    
+                        else{if (data) {
+                          res.status(400).send({ message: "Failed! Username is already in use!" });
+                          return;
+                        }
                     console.log(data)
-                    data.role = "driver"
-                    const ob=new dregister(data)
-                    ob.save((error,data)=>{
-                    if(error){
-                        res.send(error)
-                    }
-                    else{
-                         res.send(data)
-                    }
-                })
-                }
-            })
-}
-})
-}
-})
+                    dregister.findOne({
+                        email: req.body.email
+                      },(error, data) => {
+                        if (error) {
+                          console.log(error)
+                          res.status(500).send({ message: err });
+                          return;
+                        }
+                    
+                        if (data) {
+                          res.status(400).send({ message: "Failed! Email is already in use!" });
+                          return;
+                        }else{
+                    
+                            const data=req.body
+                            console.log(data)
+                            data.role = "driver"
+                            const ob=new dregister(data)
+                            ob.save((error,data)=>{
+                            if(error){
+                                res.send(error)
+                                return
+                            }
+                            else{
+                                 res.send(data)
+                            }
+                        })
+                        }
+                    })
+        }
+        })
+        }
+        })
+        }
+    })
+    
 })
 
 
@@ -344,6 +385,7 @@ app.delete('/deleteDriver/:id',function(req,res){
     dregister.findByIdAndDelete(id,(error,data)=>{
        if(error){
         res.send(error)
+        return
        }else{
         res.status(200).json({
             msg:data
@@ -376,6 +418,7 @@ app.put('/updateDriver/:id',function(req,res){
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
                 
             }
             else{
@@ -398,9 +441,11 @@ app.put('/updateDriver/:id',function(req,res){
   app.post("/login",(req,res)=>{
     console.log(req.body)
     Admin.findOne({
+       
         userName: req.body.luserName
     },(error,data)=>{
         if (error) {
+            
             console.log(error)
             res.status(500).send({ message: err });
             return;
@@ -410,7 +455,8 @@ app.put('/updateDriver/:id',function(req,res){
               res.json({data})
             }
             else{
-            res.status(400).send({ message: "username4 or password doesnot match" });
+           
+            res.send({ message: "username or password doesnot match" });
             return;
         }
         }else{
@@ -429,7 +475,7 @@ app.put('/updateDriver/:id',function(req,res){
                         res.json({data})
                     }
                     else{
-                    res.status(400).send({ message: "username3 or password doesnot match" });
+                    res.send({ message: "username or password doesnot match" });
                     return;
                 }
                 }else{
@@ -442,16 +488,17 @@ app.put('/updateDriver/:id',function(req,res){
                             return;
                         }
                         if (data) {
-                            console.log("2")
+                           
                             if (req.body.lpassword == data.password) {
                                 res.json({data})
                             }
                             else{
-                            res.status(400).send({ message: "username2 or password doesnot match" });
+                            res.send({ message: "username or password doesnot match" });
                             return;
                         }
                         }else{
-                            res.send("username1 or password doesnot match");
+                            console.log("dkajf")
+                            res.send({message: "username or password doesnot match"});
                             return;
                         }  
                     })
@@ -474,6 +521,7 @@ app.put('/updateDriver/:id',function(req,res){
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
                 
             }
             else{
@@ -490,6 +538,7 @@ app.post("/addRoute",(req,res)=>{
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
             }
             else{
                 res.send(data)
@@ -503,6 +552,7 @@ app.delete('/deleteRoute/:id',function(req,res){
     routeDetails.findByIdAndDelete(id,(error,data)=>{
        if(error){
         res.send(error)
+        return
        }else{
         res.status(200).json({
             msg:data
@@ -531,6 +581,7 @@ app.put('/updateRoute/:id',function(req,res){
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
                 
             }
             else{
@@ -553,14 +604,15 @@ app.put('/updateRoute/:id',function(req,res){
 
 app.get("/viewBpoint",(req,res)=>{
     
-    BPoint.find(
+    BPoint.distinct("point",
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
                 
             }
             else{
-                console.log(data)
+              
                 res.send(data)
             }
         }
@@ -574,6 +626,7 @@ app.post("/viewbpoint",(req,res)=>{
             if(error){
                 res.send(error)
                 console.log(error)
+                return
             }
             else{
                 console.log(data)
@@ -591,6 +644,7 @@ app.post("/addBpoint",(req,res)=>{
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
             }
             else{
                 res.send(data)
@@ -604,6 +658,7 @@ app.delete('/deleteBpoint/:id',function(req,res){
     BPoint.findByIdAndDelete(id,(error,data)=>{
        if(error){
         res.send(error)
+        return
        }else{
         res.status(200).json({
             msg:data
@@ -634,6 +689,7 @@ app.put('/updateBpoint/:id',function(req,res){
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
                 
             }
             else{
@@ -656,6 +712,7 @@ app.get("/viewComplaint",(req,res)=>{
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
                 
             }
             else{
@@ -674,6 +731,7 @@ app.post("/addComplaint",(req,res)=>{
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
             }
             else{
                 res.send(data)
@@ -693,6 +751,7 @@ app.put('/updateResponse/:id',function(req,res){
         (error,data)=>{
             if(error){
                 res.send(error)
+                return
                 
             }
             else{
@@ -706,39 +765,119 @@ app.put('/updateResponse/:id',function(req,res){
   
 
 
+  app.delete('/deletecomplaint/:id',function(req,res){
+    const id = req.params.id;
+    console.log(id)
+    complaint.findByIdAndDelete(id,(error,data)=>{
+       if(error){
+        res.send(error)
+        console.log("sdkj")
+       }else{
+        console.log(data)
+        res.status(200).json({
+            msg:data
+        })
+       }
+    })
+})
+
+app.post("/responsecomplaint",(req,res)=>{
+    console.log(req.body)
+    complaint.find({userName:req.body.userName},
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                return
+                
+            }
+            else{
+                res.send(data)
+                console.log(data)
+            }
+        }
+    )
+})
+
+
+
+
 
   //user routeDetails
 
 
 
 
-  app.post("/busdetails",(req,res)=>{
-    console.log(req.body)
-
-    routeDetails.findOne({routeNo:req.body.routeNo},
+  app.post("/busdetails/:bpoint",(req,res)=>{
+    BPoint.findOne({point:req.params.bpoint},
         (error,data)=>{
             if(error){
                 res.send(error)
                 console.log(error)
+                return
             }else{
-                res.send(data)
                 console.log(data)
+                routeDetails.findOne({routeNo:data.routeNo},
+                    (error,data)=>{
+                        if(error){
+                            res.send(error)
+                            return
+                        }else{
+                            res.send(data)
+                            console.log(data)
+                        }
+                })
             }
-        })
+    })
 })
-app.post("/driverdetails",(req,res)=>{
-    console.log(req.body)
-
-    dregister.findOne({routeNo:req.body.routeNo},
+app.post("/driverdetails/:bpoint",(req,res)=>{
+    BPoint.findOne({point:req.params.bpoint},
         (error,data)=>{
             if(error){
                 res.send(error)
                 console.log(error)
+                return
             }else{
-                res.send(data)
                 console.log(data)
+                dregister.findOne({routeNo:data.routeNo},
+                    (error,data)=>{
+                        if(error){
+                            res.send(error)
+                            console.log(error)
+                            return
+                        }else{
+                            res.send(data)
+                            console.log(data)
+                        }
+                })
             }
-        })
+    })
+   
+    
+})
+
+app.post("/getbpoint/:bpoint",(req,res)=>{
+    console.log(req.params.bpoint)
+    BPoint.findOne({point:req.params.bpoint},
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                console.log(error)
+                return
+            }else{
+                console.log(data)
+                BPoint.find({routeNo:data.routeNo},
+                    (error,data)=>{
+                        if(error){
+                            res.send(error)
+                            console.log(error)
+                            return
+                        }else{
+                            res.send(data)
+                            console.log(data)
+                        }
+                })
+            }
+    })
 })
 
 

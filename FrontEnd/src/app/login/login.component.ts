@@ -36,8 +36,19 @@ export class LoginComponent implements OnInit {
 
   constructor(private api:ApiService,
     private route:Router ) {
-    
-   }
+      this.api.viewbpoint().subscribe(
+      
+        (response)=>{
+          this.data=response
+          this.data2= this.data.filter(function(x:any) { return x !== "Maranalloor"; });
+          console.log(this.data2)
+          
+          
+        }
+      )
+    }
+  
+   
 
   ngOnInit(): void {
     
@@ -84,6 +95,8 @@ export class LoginComponent implements OnInit {
     console.log(this.login)
     this.api.login(this.login).subscribe(
       (response)=>{
+        console.log(response.message)
+        if(response.data){
         this.logdata=response
         this.api.saveUser(this.logdata)
         this.response = this.api.getUser()
@@ -106,10 +119,19 @@ export class LoginComponent implements OnInit {
           }
         
         }
+        
       }
+      if(response.message){
+        this.message=response.message
+        console.log("dj"+this.message)
+      }
+      
+    }
     )
+    
   }
   response:any=[]
-
-  
+  data:any=[]
+  data2:any=[]
+  message:any=[]
 }

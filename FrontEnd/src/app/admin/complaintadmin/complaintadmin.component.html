@@ -18,8 +18,8 @@
                            
                             <div class="card-header">
                                 <div class="col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-                                    <h6>Akhil.A</h6>
-                                <h6>33220825008</h6>
+                                    <h6>{{i.userName}}</h6>
+                                <h6>{{i.registerNumber}}</h6>
                                 </div>
                             </div>
                             <div class="card-body" >
@@ -53,8 +53,8 @@
                                           <div class="card-body">
                                            <div *ngIf="!i.isEdit">
                                             <p class="card-text">{{i.reply}}</p>
-                                            <a  class="btn btn-success" (click)="onEdit(i)">reply</a>
-                                            
+                                            <a  class="btn btn-success" (click)="onEdit(i)">reply</a> &nbsp;&nbsp;
+                                            <a  class="btn btn-danger" (click)="Delete(i)">delete</a>
                                           </div>
                                         </div> 
                                         </div>
