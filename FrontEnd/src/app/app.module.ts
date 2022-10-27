@@ -22,6 +22,9 @@ import { ComplaintadminComponent } from './admin/complaintadmin/complaintadmin.c
 import { ReqstudentComponent } from './admin/reqstudent/reqstudent.component';
 import { AddrouteComponent } from './admin/addroute/addroute.component';
 import { AddbpointComponent } from './admin/addbpoint/addbpoint.component';
+import { DriverrouteComponent } from './driver/driverroute/driverroute.component';
+import { ProfileComponent } from './admin/profile/profile.component';
+
 
 
 
@@ -45,6 +48,8 @@ import { AddbpointComponent } from './admin/addbpoint/addbpoint.component';
     ReqstudentComponent,
     AddrouteComponent,
     AddbpointComponent,
+    DriverrouteComponent,
+    ProfileComponent,
 
   ],
   imports: [

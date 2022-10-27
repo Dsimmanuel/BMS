@@ -98,7 +98,7 @@ app.post("/request",(req,res)=>{
                         }
                     
                         if (data) {
-                          res.status(400).send({ message: "Failed! Email is already in use!" });
+                          res.send({ message: "Failed! Email is already in use!" });
                           return;
                         }else{
                     
@@ -879,6 +879,70 @@ app.post("/getbpoint/:bpoint",(req,res)=>{
             }
     })
 })
+
+
+
+
+//Driver route
+
+
+
+
+
+app.post("/bdetails",(req,res)=>{
+    console.log(req.body)
+    console.log(req.body.data.routeNo)
+    routeDetails.findOne({routeNo:req.body.data.routeNo},
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                return
+            }else{
+                res.send(data)
+                console.log(data)
+            }
+    })
+               
+            
+})
+app.post("/ddetails",(req,res)=>{
+    console.log(req.body)
+    dregister.findOne({routeNo:req.body.data.routeNo},
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                console.log(error)
+                return
+            }else{
+                res.send(data)
+                console.log(data)
+            }
+    })
+               
+    
+})
+
+app.post("/dbpoint",(req,res)=>{
+    
+    console.log(req.body)
+    BPoint.find({routeNo:req.body.data.routeNo},
+        (error,data)=>{
+            if(error){
+                res.send(error)
+                console.log(error)
+                return
+            }else{
+                res.send(data)
+                console.log(data)
+            }
+    })
+    
+            
+})
+
+
+
+
 
 
 

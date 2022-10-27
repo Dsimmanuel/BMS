@@ -14,6 +14,8 @@ import { ComplaintadminComponent } from './admin/complaintadmin/complaintadmin.c
 import { ReqstudentComponent } from './admin/reqstudent/reqstudent.component';
 import { AddrouteComponent } from './admin/addroute/addroute.component';
 import { AddbpointComponent } from './admin/addbpoint/addbpoint.component';
+import { DriverrouteComponent } from './driver/driverroute/driverroute.component';
+import { ProfileComponent } from './admin/profile/profile.component';
 
 
 
@@ -32,7 +34,9 @@ const routes: Routes = [
   {path:'viewComplaint',component:ComplaintadminComponent},
   {path:'request',component:ReqstudentComponent},
   {path:'addroute',component:AddrouteComponent},
-  {path:'addbpoint',component:AddbpointComponent}
+  {path:'addbpoint',component:AddbpointComponent},
+  {path:'droute',component:DriverrouteComponent},
+  {path:'profile',component:ProfileComponent}
 ];
 
 

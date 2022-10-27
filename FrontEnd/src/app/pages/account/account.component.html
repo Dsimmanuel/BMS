@@ -6,12 +6,12 @@
           <div class="card shadow-sm">
             <div class="card-header bg-transparent text-center">
               <img class="profile_img" src="https://cdn1.vectorstock.com/i/1000x1000/38/05/male-face-avatar-logo-template-pictograph-vector-11333805.jpg" alt="student dp">
-              <h3>USER</h3>
+              <h3>{{user.data.userName}}</h3>
             </div>
             <div class="card-body">
-              <p class="mb-0"><strong class="pr-1">Student ID:</strong>321000001</p>
-              <p class="mb-0"><strong class="pr-1">Course:</strong>BCA</p>
-              <p class="mb-0"><strong class="pr-1">Semester:</strong>5</p>
+              <p class="mb-0"><strong class="pr-1">Student Name:</strong>{{user.data.name}}</p>
+              <p class="mb-0"><strong class="pr-1">Department:</strong>{{user.data.department}}</p>
+              <p class="mb-0"><strong class="pr-1">Semester:</strong>{{user.data.semester}}</p>
             </div>
             <button type="button" class="btn btn-white btn-lg btn-block">Notifications</button>
             <button type="button" class="btn btn-white btn-lg btn-block">Report</button>
@@ -27,31 +27,30 @@
             <div class="card-body pt-0">
               <table class="table table-bordered">
                 <tr>
-                  <th width="30%">Roll Number</th>
+                  <th width="30%">Register Number</th>
                   <td width="2%">:</td>
-                  <td>7</td>
+                  <td>{{user.data.registerNumber}}</td>
                 </tr>
                 <tr>
-                  <th width="30%">Academic Year	</th>
+                  <tr>
+                    <th width="30%">Address</th>
+                    <td width="2%">:</td>
+                    <td>{{user.data.address}}</td>
+                  </tr>
+                  <tr>
+                  <th width="30%">Email	</th>
                   <td width="2%">:</td>
-                  <td>2023</td>
+                  <td>{{user.data.email}}</td>
                 </tr>
+                
                 <tr>
-                  <th width="30%">Gender</th>
+                  <th width="30%">Boarding Point</th>
                   <td width="2%">:</td>
-                  <td>Male</td>
+                  <td>{{user.data.boardingPoint}}</td>
                 </tr>
-                <tr>
-                  <th width="30%">Place</th>
-                  <td width="2%">:</td>
-                  <td>Neyyattinkara</td>
-                </tr>
-                <tr>
-                  <th width="30%">Blood Group</th>
-                  <td width="2%">:</td>
-                  <td>A+</td>
-                </tr>
+               
               </table>
+              <p class="h6">Want to change your Password? <a href="#" class="link-primary">Click here</a></p>
             </div>
           </div>
             <div style="height: 26px"></div>
@@ -59,4 +58,5 @@
         </div>
       </div>
     </div>
+    
   </div>

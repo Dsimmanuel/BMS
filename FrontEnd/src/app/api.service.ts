@@ -208,6 +208,23 @@ export class ApiService {
   getbpoint=(point:any)=>{
     return this.http.post<any>("http://localhost:3000/getbpoint/"+point,point)
   }
+
+
+  //Driver Route Details
+  
+
+
+  bdetails=(point:any)=>{
+   
+    return this.http.post<any>("http://localhost:3000/bdetails",point)
+  }
+  ddetails=(driver:any)=>{
+    return this.http.post<any>("http://localhost:3000/ddetails",driver)
+  }
+  dbpoint=(point:any)=>{
+    return this.http.post<any>("http://localhost:3000/dbpoint",point)
+  }
+
 }
 
 

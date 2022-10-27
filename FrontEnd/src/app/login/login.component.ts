@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit {
           }
           if(this.response.data.role == "driver"){
             this.api.saveRole("driver")
-            this.route.navigate(['/route'])
+            this.route.navigate(['/droute'])
           }
           if(this.response.data.role == "student"){
             this.api.saveRole("student")

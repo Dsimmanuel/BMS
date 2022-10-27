@@ -1,0 +1,81 @@
+
+<app-navbar></app-navbar>
+
+
+<div class="row">
+    <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="row">
+            <div class="container">
+       
+                 
+
+                <select class="form-select" aria-label="Default select example" style="width:300px; margin-left: 150px;margin-top: 50px;  margin-bottom: 50px;background-color: rgb(255, 255, 248);"  >
+                    <option >select</option>
+                    <option *ngFor="let i of data4" onclick="selected" (click)="checkBpoint(i)" align="center">{{i}}</option>
+                  </select>
+
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <img src={{data1.image}} class="img-fluid" alt="..." width="600px" height="1500px" align="center" style="margin-top: 125px ;margin-left: 70px;margin-right: 80px;">
+            </div>
+            <div class="col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6" >
+                <div class=""   style="margin-top: 0px ; margin-bottom: 40px; border-style: dashed;border-width: 3px;border-color: rgb(204, 202, 202);margin-right: 150px;" >
+                   
+                        <div style="padding-top: 20px;" >
+                            
+                            <h3 style="margin-left: 25px;" >
+                                <small class="fw-bold">College Bus Transport</small>
+                              </h3>
+                            
+                          <div  >
+                          <hr class="hrr2" style="margin-left: 25px;">
+                        
+                         <div>
+                          <p class="fw-bold" style="margin-left: 25px;"> DriverID: <label class="fw-normal">{{data3.driverId}}</label> </p> 
+                          <hr class="hrr2" style="margin-left: 25px;">
+                          <p class="fw-bold" style="margin-left: 25px;"> Busno :<label class="fw-normal">{{data1.busNo}}</label> </p> 
+                          <hr class="hrr2" style="margin-left: 25px;">
+                          <p class="fw-bold" style="margin-left: 25px;"> Total Seats: <label class="fw-normal">{{data1.seats}}</label> </p> 
+                          <hr class="hrr2" style="margin-left: 25px;">
+                          <div class="card-header" style="margin-left: 25px;" >
+                            <table class="table table-hover" >
+                             <tr>   
+                             <th>
+                                <h4>
+                               
+                                    <small class="fw-bold">Boarding Points</small>
+                                    
+                                </h4 >
+                             </th>
+                             <th>
+                                <h4>
+                               
+                                    <small class="fw-bold">Time</small>
+                                   
+                                </h4 >
+                             </th>
+                             
+                            </tr> 
+                            <tbody> 
+                            <tr *ngFor="let j of data">
+                                <td>   
+                                        <p class="lh-1"><i class="fas fa-map-marker-alt"></i>{{j.point}}</p>   
+                                </td>
+                                <td>
+                                        <p class="lh-1">{{j.time}}</p>   
+                                </td>
+                            </tr>
+                        </tbody> 
+                          </table>
+                        </div> 
+                          
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+</div>
